@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import styled, { css } from "styled-components";
 
 const Media = props => {
-  const path = " (D)szkolenia wideomedia testy na prawo jazdy 9.2019";
+  const path = "https://poznaj-testy.pl/wp-content/uploads/media/";
+
+  let media = props.m;
+  if (media.toString().indexOf(".wmv") > -1) {
+    media = media.toString().replace(".wmv", ".mp4");
+  }
+
   return (
-    <video width="320" height="240" controls>
-      <source src={props.m} type="video/wmv" />
+    <video width="200" controls>
+      <source src={path + media} type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   );

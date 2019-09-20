@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled, { css } from "styled-components";
-import Media from "./media";
+import Media from "./Media";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,12 +26,12 @@ class Question extends Component {
     return (
       <Wrapper>
         <LeftColumn>
-          <p>media: {m}</p>
           <Media m={m} />
         </LeftColumn>
         <RightColumn>
-          <p>nr: {nr}</p>
-          <p>id: {id}</p>
+          <span>{nr}</span>
+          <span>id: {id}</span>
+          <span>m: {m}</span>
           <h4>pytanie: {q}</h4>
           <p>odpowiedź: {r}</p>
         </RightColumn>
