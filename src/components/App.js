@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { questions } from "../assets/kat_b_pl";
 import Question from "./Question";
+import styled, { css } from "styled-components";
+
+const Wrapper = styled.div`
+  max-width: 900px;
+  margin: auto;
+`;
 
 class App extends Component {
   state = {
@@ -12,11 +18,11 @@ class App extends Component {
     const { questions } = this.state;
 
     return (
-      <>
-        {questions.slice(0, 3).map(question => {
+      <Wrapper>
+        {questions.slice(3, 6).map(question => {
           return <Question key={question.id} question={question} />;
         })}
-      </>
+      </Wrapper>
     );
   }
 }

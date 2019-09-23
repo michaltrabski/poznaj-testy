@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   margin: 10px;
   padding: 10px;
-  border: 1px solid lightgray;
+  border: 1px solid ${props => props.theme.gray300};
   border-radius: 5px;
 `;
 
@@ -16,9 +16,7 @@ const LeftColumn = styled.div`
   max-width: 50%;
 `;
 
-const RightColumn = styled(LeftColumn)`
-  background-color: red;
-`;
+const RightColumn = styled(LeftColumn)``;
 
 class Question extends Component {
   render() {
