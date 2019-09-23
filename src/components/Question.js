@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   padding: 10px;
   border: 1px solid ${props => props.theme.gray300};
   border-radius: 5px;
+  background-color: ${props => props.theme.questionBackground};
 `;
 
 const LeftColumn = styled.div`

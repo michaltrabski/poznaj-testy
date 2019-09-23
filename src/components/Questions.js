@@ -1,14 +1,21 @@
 import React from "react";
 import Question from "./Question";
-// import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-const Questions = ({ questionsList }) => {
+const Wrapper = styled.div`
+  flex: 0 0 80%;
+  max-width: 80%;
+`;
+
+const Questions = ({ questionsList, startingQuestion, questionPerPage }) => {
+  const sliceTo = startingQuestion + questionPerPage;
+
   return (
-    <>
-      {questionsList.slice(0, 4).map(question => {
+    <Wrapper>
+      {questionsList.slice(startingQuestion, sliceTo).map(question => {
         return <Question key={question.id} question={question} />;
       })}
-    </>
+    </Wrapper>
   );
 };
 
