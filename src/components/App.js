@@ -38,6 +38,20 @@ class App extends Component {
     isUserLoggedIn: true
   };
 
+  nextQuestion = () => {
+    this.setState({
+      startingQuestion:
+        this.state.startingQuestion + 1 * this.state.questionPerPage
+    });
+  };
+  previesQuestion = () => {
+    let { startingQuestion: start, questionPerPage: count } = this.state;
+    console.log(start - 1 * count);
+    if (start - 1 * count >= 0)
+      this.setState({
+        startingQuestion: start - 1 * count
+      });
+  };
   render() {
     const {
       questionsList,
@@ -50,13 +64,15 @@ class App extends Component {
     return (
       <Background>
         <MaxWidth>
-          <Container fluid className="pt-5">
+          <Container fluid className="py-5">
             <Row>
               <Col xs={12} md={12}>
                 <Questions
                   questionsList={questionsList}
                   questionPerPage={questionPerPage}
                   startingQuestion={startingQuestion}
+                  previesQuestion={this.previesQuestion}
+                  nextQuestion={this.nextQuestion}
                 />
               </Col>
               {/* <Col xs={12} md={12}>
