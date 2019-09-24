@@ -1,40 +1,20 @@
 import React, { Component } from "react";
-import styled, { css } from "styled-components";
+import { Row, Col, Button } from "react-bootstrap/";
 import Media from "./Media";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid ${props => props.theme.gray300};
-  border-radius: 5px;
-  background-color: ${props => props.theme.questionBackground};
-`;
-
-const LeftColumn = styled.div`
-  flex: 0 0 50%;
-  max-width: 50%;
-`;
-
-const RightColumn = styled(LeftColumn)``;
 
 class Question extends Component {
   render() {
     const { nr, id, m, q, r } = this.props.question;
     return (
-      <Wrapper>
-        <LeftColumn>
+      <Row className="border rounded mb-5 p-3 bg-white">
+        <Col xs={12} md={6}>
           <Media m={m} />
-        </LeftColumn>
-        <RightColumn>
-          <span>{nr}</span>
-          <span>id: {id}</span>
-          <span>m: {m}</span>
-          <h4>pytanie: {q}</h4>
-          <p>odpowiedź: {r}</p>
-        </RightColumn>
-      </Wrapper>
+        </Col>
+        <Col xs={12} md={6}>
+          <h4>{q}</h4>
+          <Button variant="primary">Następne</Button>
+        </Col>
+      </Row>
     );
   }
 }
