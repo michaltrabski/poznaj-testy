@@ -9,27 +9,20 @@ const AnswerYesNo = props => {
     <Row>
       <Col>
         <div className="p-3 d-flex justify-content-center">
-          <Button
-            variant={
-              r.toLowerCase() === "t" && showRightAnswerNow
-                ? "success"
-                : "light"
-            }
-            onClick={() => userClickedAnswer(id, "t")}
-          >
-            Tak
-          </Button>
-          <Button
-            variant={
-              r.toLowerCase() === "n" && showRightAnswerNow
-                ? "success"
-                : "light"
-            }
-            onClick={() => userClickedAnswer(id, "n")}
-            className="ml-3"
-          >
-            Nie
-          </Button>
+          {["t", "n"].map(item => {
+            return (
+              <Button
+                variant={
+                  r.toLowerCase() === item && showRightAnswerNow
+                    ? "success"
+                    : "light"
+                }
+                onClick={() => userClickedAnswer(id, item)}
+              >
+                {item == "t" ? "tak" : "nie"}
+              </Button>
+            );
+          })}
         </div>
       </Col>
     </Row>
