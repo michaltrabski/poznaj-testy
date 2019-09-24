@@ -8,27 +8,17 @@ const Questions = ({
   questionPerPage,
   nextQuestion,
   previesQuestion,
-  removeQuestion
+  removeQuestion,
+  showRightAnswerNow
 }) => {
   const sliceTo = startingQuestion + questionPerPage;
 
   return (
     <>
-      <div className="p-5 d-flex justify-content-between">
-        <Button
-          variant="primary"
-          onClick={previesQuestion}
-          disabled={startingQuestion <= 0 && true}
-        >
-          Poprzednie
-        </Button>
-        <Button variant="primary" onClick={nextQuestion}>
-          Następne
-        </Button>
-      </div>
       {questionsList.slice(startingQuestion, sliceTo).map((question, i) => {
         return (
           <Question
+            showRightAnswerNow={showRightAnswerNow}
             i={i + 1}
             key={question.id}
             question={question}

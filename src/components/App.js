@@ -32,9 +32,10 @@ class App extends Component {
         "t"
       ]
     },
+    showRightAnswerNow: true,
     currentCategory: "b",
-    startingQuestion: 0,
-    questionPerPage: 20,
+    startingQuestion: 70,
+    questionPerPage: 10,
     isUserLoggedIn: true
   };
 
@@ -64,10 +65,11 @@ class App extends Component {
   render() {
     const {
       questionsList,
-      userHasOptions,
+      // userHasOptions,
       currentCategory,
       questionPerPage,
-      startingQuestion
+      startingQuestion,
+      showRightAnswerNow
     } = this.state;
 
     return (
@@ -77,6 +79,7 @@ class App extends Component {
             <Row>
               <Col xs={12} md={10}>
                 <Questions
+                  showRightAnswerNow={showRightAnswerNow}
                   questionsList={questionsList}
                   questionPerPage={questionPerPage}
                   startingQuestion={startingQuestion}
@@ -87,7 +90,9 @@ class App extends Component {
               </Col>
               <Col xs={12} md={2}>
                 <p>Ustawienia:</p>
-                <p>Ilość pytań {this.state.questionsList.length}</p>
+                <p>Kategoria: {currentCategory.toUpperCase()}</p>
+                <p>Ilość pytań w bazie: {questionsList.length}</p>
+                <p>Ilość pytań na stronie: {questionPerPage}</p>
               </Col>
             </Row>
           </Container>

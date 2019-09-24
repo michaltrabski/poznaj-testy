@@ -1,33 +1,33 @@
-import React, { Component } from "react";
+import React from "react";
 import { Row, Col, Button } from "react-bootstrap/";
 import Media from "./Media";
+import Answer from "./answers/Answer";
 
-class Question extends Component {
-  render() {
-    const { nr, id, m, q, r } = this.props.question;
-    const { removeQuestion, i } = this.props;
+const Question = props => {
+  const { nr, id, m, q, r } = props.question;
+  const { removeQuestion, i } = props;
 
-    return (
-      <Row className="border rounded mb-5 p-3 bg-white">
-        <Col xs={12} md={6}>
-          <Media m={m} />
-        </Col>
-        <Col xs={12} md={6}>
-          <div className="d-flex flex-column h-100">
-            <h4>
-              <span className="text-secondary">{i}). </span>
-              {q}
-            </h4>
-            <div className="mt-auto d-flex justify-content-end">
-              <Button variant="danger" onClick={() => removeQuestion(id)}>
-                Usuń pytanie
-              </Button>
-            </div>
+  return (
+    <Row className="border rounded mb-5 p-3 bg-white">
+      <Col xs={12} md={6}>
+        <Media m={m} />
+      </Col>
+      <Col xs={12} md={6}>
+        <div className="d-flex flex-column h-100">
+          <h4>
+            <span className="text-secondary">{nr}). </span>
+            {q}
+          </h4>
+          <Answer {...props} />
+          <div className="mt-auto d-flex justify-content-end">
+            <Button variant="danger" onClick={() => removeQuestion(id)}>
+              Usuń pytanie
+            </Button>
           </div>
-        </Col>
-      </Row>
-    );
-  }
-}
+        </div>
+      </Col>
+    </Row>
+  );
+};
 
 export default Question;
