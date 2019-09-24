@@ -5,6 +5,7 @@ import Media from "./Media";
 class Question extends Component {
   render() {
     const { nr, id, m, q, r } = this.props.question;
+    const { removeQuestion, i } = this.props;
 
     return (
       <Row className="border rounded mb-5 p-3 bg-white">
@@ -13,8 +14,15 @@ class Question extends Component {
         </Col>
         <Col xs={12} md={6}>
           <div className="d-flex flex-column h-100">
-            <h4>{q}</h4>
-            <div className="mt-auto">oceny</div>
+            <h4>
+              <span className="text-secondary">{i}). </span>
+              {q}
+            </h4>
+            <div className="mt-auto d-flex justify-content-end">
+              <Button variant="danger" onClick={() => removeQuestion(id)}>
+                Usuń pytanie
+              </Button>
+            </div>
           </div>
         </Col>
       </Row>

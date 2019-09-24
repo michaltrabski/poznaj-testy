@@ -34,7 +34,7 @@ class App extends Component {
     },
     currentCategory: "b",
     startingQuestion: 0,
-    questionPerPage: 2,
+    questionPerPage: 20,
     isUserLoggedIn: true
   };
 
@@ -44,14 +44,23 @@ class App extends Component {
         this.state.startingQuestion + 1 * this.state.questionPerPage
     });
   };
+
   previesQuestion = () => {
     let { startingQuestion: start, questionPerPage: count } = this.state;
-    console.log(start - 1 * count);
+    // console.log(start - 1 * count);
     if (start - 1 * count >= 0)
       this.setState({
         startingQuestion: start - 1 * count
       });
   };
+
+  removeQuestion = id => {
+    const newQuestionsList = this.state.questionsList.filter(x => x.id !== id);
+    this.setState({
+      questionsList: newQuestionsList
+    });
+  };
+
   render() {
     const {
       questionsList,
@@ -66,18 +75,20 @@ class App extends Component {
         <MaxWidth>
           <Container fluid className="py-5">
             <Row>
-              <Col xs={12} md={12}>
+              <Col xs={12} md={10}>
                 <Questions
                   questionsList={questionsList}
                   questionPerPage={questionPerPage}
                   startingQuestion={startingQuestion}
-                  previesQuestion={this.previesQuestion}
                   nextQuestion={this.nextQuestion}
+                  previesQuestion={this.previesQuestion}
+                  removeQuestion={this.removeQuestion}
                 />
               </Col>
-              {/* <Col xs={12} md={12}>
-              sidebar
-            </Col> */}
+              <Col xs={12} md={2}>
+                <p>Ustawienia:</p>
+                <p>Ilość pytań {this.state.questionsList.length}</p>
+              </Col>
             </Row>
           </Container>
         </MaxWidth>
