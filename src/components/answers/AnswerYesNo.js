@@ -2,8 +2,8 @@ import React from "react";
 import { Row, Col, Button } from "react-bootstrap/";
 
 const AnswerYesNo = props => {
-  let { showRightAnswerNow } = props;
-  let { r } = props.question;
+  let { showRightAnswerNow, userClickedAnswer } = props;
+  let { r, id } = props.question;
 
   return (
     <Row>
@@ -15,6 +15,7 @@ const AnswerYesNo = props => {
                 ? "success"
                 : "light"
             }
+            onClick={() => userClickedAnswer(id, "t")}
           >
             Tak
           </Button>
@@ -24,6 +25,7 @@ const AnswerYesNo = props => {
                 ? "success"
                 : "light"
             }
+            onClick={() => userClickedAnswer(id, "n")}
             className="ml-3"
           >
             Nie

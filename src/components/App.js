@@ -39,6 +39,9 @@ class App extends Component {
     isUserLoggedIn: true
   };
 
+  userClickedAnswer = (id, answer) => {
+    console.log(id, answer);
+  };
   nextQuestion = () => {
     this.setState({
       startingQuestion:
@@ -86,6 +89,7 @@ class App extends Component {
                   nextQuestion={this.nextQuestion}
                   previesQuestion={this.previesQuestion}
                   removeQuestion={this.removeQuestion}
+                  userClickedAnswer={this.userClickedAnswer}
                 />
               </Col>
               <Col xs={12} md={2}>

@@ -2,12 +2,31 @@ import React from "react";
 import { Row, Col, Button } from "react-bootstrap/";
 
 const AnswerAbc = props => {
-  let { showRightAnswerNow } = props;
-  let { a, b, c, r } = props.question;
+  let { showRightAnswerNow, userClickedAnswer } = props;
+  let { a, b, c, r, id } = props.question;
 
   return (
     <Row>
       <Col>
+        {/* <div>
+          {["x", "y"].map(item => {
+            return (
+              <Button
+                variant={
+                  r.toLowerCase() === "a" && showRightAnswerNow
+                    ? "success"
+                    : "light"
+                }
+                block
+                className="text-left"
+                onClick={() => userClickedAnswer(id, "a")}
+              >
+                <span className="font-weight-bold">A.</span> {a}
+              </Button>
+            );
+          })}
+        </div> */}
+
         <div className="p-3">
           <Button
             variant={
@@ -17,6 +36,7 @@ const AnswerAbc = props => {
             }
             block
             className="text-left"
+            onClick={() => userClickedAnswer(id, "a")}
           >
             <span className="font-weight-bold">A.</span> {a}
           </Button>
@@ -28,6 +48,7 @@ const AnswerAbc = props => {
             }
             block
             className="text-left"
+            onClick={() => userClickedAnswer(id, "b")}
           >
             <span className="font-weight-bold">B.</span> {b}
           </Button>
@@ -39,6 +60,7 @@ const AnswerAbc = props => {
             }
             block
             className="text-left"
+            onClick={() => userClickedAnswer(id, "c")}
           >
             <span className="font-weight-bold">C.</span> {c}
           </Button>
