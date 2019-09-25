@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import AnswerYesNo from "./AnswerYesNo";
 import AnswerAbc from "./AnswerAbc";
+import MichalContext from "./../../context/MichalContext";
 
 class Answer extends Component {
-  state = {
-    showRightAnswerNow: true
-  };
+  static contextType = MichalContext;
 
   render() {
-    const { showRightAnswerNow } = this.state;
+    const { showRightAnswerNow } = this.context;
     let { r } = this.props.question;
     r = r.toLowerCase();
 

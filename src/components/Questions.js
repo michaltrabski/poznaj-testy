@@ -31,10 +31,10 @@ const Questions = ({
           onClick={previesQuestion}
           disabled={startingQuestion <= 0 && true}
         >
-          Poprzednie
+          {questionPerPage === 1 ? "poprzednie pytanie" : "Poprzednia strona"}
         </Button>
         <Button variant="primary" onClick={nextQuestion}>
-          Następne
+          {questionPerPage === 1 ? "Następne pytanie" : "Następna strona"}
         </Button>
       </div>
     </>

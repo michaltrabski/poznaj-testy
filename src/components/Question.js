@@ -9,10 +9,10 @@ const Question = props => {
 
   return (
     <Row className="border rounded mb-5 py-3 bg-white">
-      <Col xs={12} md={6}>
+      <Col xs={12} md={7}>
         <Media m={m} />
       </Col>
-      <Col xs={12} md={6}>
+      <Col xs={12} md={5}>
         <div className="d-flex flex-column h-100">
           <h4>
             <span className="text-secondary">{nr}) </span>
@@ -23,6 +23,7 @@ const Question = props => {
             <Button variant="danger" onClick={() => removeQuestion(id)}>
               Usuń pytanie
             </Button>
+            <Button variant="info">Wyjaśnienie</Button>
           </div>
         </div>
       </Col>

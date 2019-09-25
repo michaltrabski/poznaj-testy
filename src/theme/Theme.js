@@ -12,9 +12,14 @@ const colors = {
   white: "white"
 };
 
+const widths = {
+  pageMaxWidth: "1400px"
+};
+
 export const theme = {
   ...gray,
   ...colors,
+  ...widths,
   borderRadius: "0.25rem",
   imageBackground: gray.gray900,
   videoBackground: gray.gray900,

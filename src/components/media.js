@@ -28,6 +28,8 @@ const Media = ({ m: media }) => {
     isVideo = true;
   }
 
+  if (media === "") media = "empty.jpg";
+
   if (isVideo) {
     return (
       <Video controls>

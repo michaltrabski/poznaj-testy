@@ -1,43 +1,47 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  flex: 0 0 20%;
-  max-width: 20%;
-  background-color: ${props => props.theme.gray200};
-`;
+import MichalContext from "./../context/MichalContext";
+import { Form } from "react-bootstrap/";
 
 class Sidebar extends Component {
+  static contextType = MichalContext;
+
   render() {
-    const {
-      userHasOptions,
-      currentCategory,
-      handleCurrentCategoryChange
-    } = this.props;
-
     return (
-      <Wrapper className="xxxxx">
-        <p>Ustawienia:</p>
+      <>
+        <p>Sidebar:</p>
 
-        <div>
-          <label htmlFor="userCanSelectCategory">
-            Wybierz kategorię: {currentCategory}
-          </label>
-          <select
-            value={currentCategory}
-            id="userCanSelectCategory"
-            onChange={e => handleCurrentCategoryChange(e.target.value)}
+        <Form>
+          {["checkbox"].map(type => (
+            <div key={`custom-${type}`} className="mb-3">
+              <Form.Check
+                custom
+                type={type}
+                id={`custom-${type}`}
+                label="Ukryj prawidłowe odpowiedzi"
+                checked={this.context.showRightAnswerNow}
+                onChange={this.context.toggleshowRightAnswerNow}
+              />
+            </div>
+          ))}
+        </Form>
+
+        <Form.Group controlId="userCanSelectCategory">
+          <Form.Label>Kategoria prawa jazdy:</Form.Label>
+          <Form.Control
+            as="select"
+            value={this.context.currentCategory}
+            onChange={() => alert("changed select")}
           >
-            {userHasOptions.userCanSelectCategory.map(item => {
+            {this.context.userCanSelectCategory.map(item => {
               return (
                 <option key={item} value={item}>
                   {item}
                 </option>
               );
             })}
-          </select>
-        </div>
-      </Wrapper>
+          </Form.Control>
+        </Form.Group>
+      </>
     );
   }
 }
