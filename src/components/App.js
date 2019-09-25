@@ -17,24 +17,22 @@ const MaxWidth = styled.div`
 class App extends Component {
   state = {
     questionsList: [...questionsList],
-    userHasOptions: {
-      userCanSelectCategory: [
-        "a",
-        "a1",
-        "am",
-        "b",
-        "b1",
-        "c",
-        "c1",
-        "d",
-        "d1",
-        "pt",
-        "t"
-      ]
-    },
-    showRightAnswerNow: true,
+    userCanSelectCategory: [
+      "a",
+      "a1",
+      "am",
+      "b",
+      "b1",
+      "c",
+      "c1",
+      "d",
+      "d1",
+      "pt",
+      "t"
+    ],
+    showRightAnswerNow: false,
     currentCategory: "b",
-    startingQuestion: 70,
+    startingQuestion: 87,
     questionPerPage: 10,
     isUserLoggedIn: true
   };
@@ -51,7 +49,6 @@ class App extends Component {
 
   previesQuestion = () => {
     let { startingQuestion: start, questionPerPage: count } = this.state;
-    // console.log(start - 1 * count);
     if (start - 1 * count >= 0)
       this.setState({
         startingQuestion: start - 1 * count
@@ -68,7 +65,6 @@ class App extends Component {
   render() {
     const {
       questionsList,
-      // userHasOptions,
       currentCategory,
       questionPerPage,
       startingQuestion,

@@ -8,14 +8,14 @@ const Question = props => {
   const { removeQuestion, i } = props;
 
   return (
-    <Row className="border rounded mb-5 p-3 bg-white">
+    <Row className="border rounded mb-5 py-3 bg-white">
       <Col xs={12} md={6}>
         <Media m={m} />
       </Col>
       <Col xs={12} md={6}>
         <div className="d-flex flex-column h-100">
           <h4>
-            <span className="text-secondary">{nr}). </span>
+            <span className="text-secondary">{nr}) </span>
             {q}
           </h4>
           <Answer {...props} />

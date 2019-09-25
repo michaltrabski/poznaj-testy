@@ -12,6 +12,7 @@ const AnswerYesNo = props => {
           {["t", "n"].map(item => {
             return (
               <Button
+                key={item}
                 variant={
                   r.toLowerCase() === item && showRightAnswerNow
                     ? "success"

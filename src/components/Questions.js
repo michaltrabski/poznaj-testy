@@ -29,7 +29,7 @@ const Questions = ({
           />
         );
       })}
-      <div className="p-5 d-flex justify-content-between">
+      <div className="py-5 d-flex justify-content-between">
         <Button
           variant="primary"
           onClick={previesQuestion}
