@@ -8,9 +8,7 @@ const Questions = ({
   questionPerPage,
   nextQuestion,
   previesQuestion,
-  removeQuestion,
-  showRightAnswerNow,
-  userClickedAnswer
+  removeQuestion
 }) => {
   const sliceTo = startingQuestion + questionPerPage;
 
@@ -19,13 +17,11 @@ const Questions = ({
       {questionsList.slice(startingQuestion, sliceTo).map((question, i) => {
         return (
           <Question
-            showRightAnswerNow={showRightAnswerNow}
             i={i + 1}
             key={question.id}
             question={question}
             questionPerPage={questionPerPage}
             removeQuestion={removeQuestion}
-            userClickedAnswer={userClickedAnswer}
           />
         );
       })}

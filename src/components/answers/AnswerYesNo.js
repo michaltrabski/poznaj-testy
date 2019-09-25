@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Col, Button } from "react-bootstrap/";
 
 const AnswerYesNo = props => {
-  let { showRightAnswerNow, userClickedAnswer } = props;
   let { r, id } = props.question;
 
   return (
@@ -11,16 +10,8 @@ const AnswerYesNo = props => {
         <div className="p-3 d-flex justify-content-center">
           {["t", "n"].map(item => {
             return (
-              <Button
-                key={item}
-                variant={
-                  r.toLowerCase() === item && showRightAnswerNow
-                    ? "success"
-                    : "light"
-                }
-                onClick={() => userClickedAnswer(id, item)}
-              >
-                {item == "t" ? "tak" : "nie"}
+              <Button key={item} variant="light">
+                {item === "t" ? "tak" : "nie"}
               </Button>
             );
           })}

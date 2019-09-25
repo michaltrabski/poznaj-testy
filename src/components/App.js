@@ -30,16 +30,12 @@ class App extends Component {
       "pt",
       "t"
     ],
-    showRightAnswerNow: false,
     currentCategory: "b",
-    startingQuestion: 87,
+    startingQuestion: 314,
     questionPerPage: 10,
     isUserLoggedIn: true
   };
 
-  userClickedAnswer = (id, answer) => {
-    console.log(id, answer);
-  };
   nextQuestion = () => {
     this.setState({
       startingQuestion:
@@ -67,8 +63,7 @@ class App extends Component {
       questionsList,
       currentCategory,
       questionPerPage,
-      startingQuestion,
-      showRightAnswerNow
+      startingQuestion
     } = this.state;
 
     return (
@@ -78,7 +73,6 @@ class App extends Component {
             <Row>
               <Col xs={12} md={10}>
                 <Questions
-                  showRightAnswerNow={showRightAnswerNow}
                   questionsList={questionsList}
                   questionPerPage={questionPerPage}
                   startingQuestion={startingQuestion}
