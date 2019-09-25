@@ -3,7 +3,6 @@ import { Row, Col, Button } from "react-bootstrap/";
 
 class AnswerAbc extends Component {
   state = {
-    showRightAnswerNow: false,
     userClickedAnswer: null
   };
 
@@ -15,6 +14,7 @@ class AnswerAbc extends Component {
   };
 
   render() {
+    const { showRightAnswerNow } = this.props;
     let { r, id } = this.props.question;
     r = r.toLowerCase();
 
@@ -36,7 +36,7 @@ class AnswerAbc extends Component {
           }
         }
       } else {
-        if (this.state.showRightAnswerNow) {
+        if (showRightAnswerNow) {
           return answer === rightAnswer ? "success" : "light";
         } else {
           return "light";
