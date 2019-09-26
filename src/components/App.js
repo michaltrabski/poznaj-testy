@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Sidebar from "./Sidebar";
 import { Container, Row, Col } from "react-bootstrap/";
 import MichalContext from "../context/MichalContext";
+import config from "../config/Config";
 
 const Background = styled.div`
   background-color: ${props => props.theme.light};
@@ -78,15 +79,6 @@ class App extends Component {
     this.setState({ questionsList });
   };
 
-  showExplanation = id => {
-    console.log(id);
-    // const questionsList = this.state.questionsList.map(x => {
-    //   if (x.id === id) x.hide = true;
-    //   return x;
-    // });
-    // this.setState({ questionsList });
-  };
-
   render() {
     const {
       questionsList,
@@ -98,6 +90,7 @@ class App extends Component {
     return (
       <MichalContext.Provider
         value={{
+          ...config,
           showRightAnswerNow: this.state.showRightAnswerNow,
           userCanSelectCategory: this.state.userCanSelectCategory,
           currentCategory: this.state.currentCategory,
@@ -123,11 +116,8 @@ class App extends Component {
                   />
                 </Col>
                 <Col xs={12} md={2}>
-                  <p>Ustawienia:</p>
                   <p>Kategoria: {currentCategory.toUpperCase()}</p>
                   <p>Ilość pytań w bazie: {questionsList.length}</p>
-                  <p>Ilość pytań na stronie: {questionPerPage}</p>
-                  <p>---------</p>
                   <Sidebar />
                 </Col>
               </Row>

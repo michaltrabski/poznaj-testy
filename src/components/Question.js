@@ -2,11 +2,19 @@ import React, { Component } from "react";
 import { Row, Col, Button, Badge } from "react-bootstrap/";
 import Media from "./Media";
 import Answer from "./answers/Answer";
-import ConfigContext from "../context/ConfigContext";
 import Explanation from "./Explanation";
+import MichalContext from "./../context/MichalContext";
 
 class Question extends Component {
-  static contextType = ConfigContext;
+  state = {
+    showExplanation: false
+  };
+
+  showExplanation = () => {
+    this.setState({ showExplanation: !this.state.showExplanation });
+  };
+
+  static contextType = MichalContext;
 
   render() {
     const { nr, id, m, q, r, pkt, hide } = this.props.question;
@@ -43,21 +51,33 @@ class Question extends Component {
                   {q}
                 </h4>
                 <Answer {...this.props} />
-                <div className="mt-auto d-flex justify-content-end">
+                <div className="mt-auto d-flex">
+                  <Button variant="info" onClick={this.showExplanation}>
+                    Wyjaśnienie
+                  </Button>
                   {this.context.enableRemoveQuestionButton && (
-                    <Button variant="danger" onClick={() => removeQuestion(id)}>
+                    <Button
+                      className="mr-3"
+                      variant="danger"
+                      onClick={() => removeQuestion(id)}
+                    >
                       Usuń pytanie
                     </Button>
                   )}
-                  <Button variant="dark" onClick={() => hideQuestion(id)}>
-                    ukryj pytanie
-                  </Button>
-                  <Button variant="info">Wyjaśnienie</Button>
+                  {this.context.enableHideQuestionButton && (
+                    <Button
+                      className="mr-3"
+                      variant="dark"
+                      onClick={() => hideQuestion(id)}
+                    >
+                      ukryj pytanie
+                    </Button>
+                  )}
                 </div>
               </div>
             </Col>
           </Row>
-          <Explanation />
+          {this.state.showExplanation && <Explanation />}
         </Col>
       </Row>
     );

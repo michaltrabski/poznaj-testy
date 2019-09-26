@@ -19,6 +19,11 @@ const GlobalStyle = createGlobalStyle`
     /* font-size: 1.6rem; */
     font-family: "Montserrat", sans-serif;
   }
+
+  .btn.focus, .btn:focus {
+    box-shadow: none !important;
+}
+
 `;
 
 export default GlobalStyle;

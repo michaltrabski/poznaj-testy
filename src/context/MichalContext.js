@@ -1,7 +1,8 @@
 import React from "react";
+import config from "../config/Config";
 
 const MichalContext = React.createContext({
-  color: "red"
+  ...config
 });
 
 export default MichalContext;
