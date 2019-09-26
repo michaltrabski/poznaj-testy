@@ -38,8 +38,13 @@ class App extends Component {
     isUserLoggedIn: true
   };
 
+  changeQuestionPerPage = amount => {
+    this.setState({
+      questionPerPage: Number(amount)
+    });
+  };
+
   toggleshowRightAnswerNow = () => {
-    console.log("it works!");
     this.setState({
       showRightAnswerNow: !this.state.showRightAnswerNow
     });
@@ -81,7 +86,9 @@ class App extends Component {
           showRightAnswerNow: this.state.showRightAnswerNow,
           userCanSelectCategory: this.state.userCanSelectCategory,
           currentCategory: this.state.currentCategory,
-          toggleshowRightAnswerNow: this.toggleshowRightAnswerNow
+          toggleshowRightAnswerNow: this.toggleshowRightAnswerNow,
+          questionPerPage: this.state.questionPerPage,
+          changeQuestionPerPage: this.changeQuestionPerPage
         }}
       >
         <Background>

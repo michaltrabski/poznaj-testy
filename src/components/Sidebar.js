@@ -41,6 +41,23 @@ class Sidebar extends Component {
             })}
           </Form.Control>
         </Form.Group>
+
+        <Form.Group controlId="dgsfgsdfg">
+          <Form.Label>Ile pokazywać pytań na stronie?</Form.Label>
+          <Form.Control
+            as="select"
+            value={this.context.questionPerPage}
+            onChange={e => this.context.changeQuestionPerPage(e.target.value)}
+          >
+            {[1, 2, 5, 10].map(item => {
+              return (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              );
+            })}
+          </Form.Control>
+        </Form.Group>
       </>
     );
   }
