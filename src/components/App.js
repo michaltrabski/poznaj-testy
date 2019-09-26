@@ -31,17 +31,16 @@ class App extends Component {
       "pt",
       "t"
     ],
-    showRightAnswerNow: true,
+    showRightAnswerNow: false,
     currentCategory: "b",
     startingQuestion: 0,
-    questionPerPage: 2,
+    questionPerPage: 1,
     isUserLoggedIn: true
   };
 
   changeQuestionPerPage = amount => {
-    this.setState({
-      questionPerPage: Number(amount)
-    });
+    const questionPerPage = Number(amount);
+    this.setState({ questionPerPage, startingQuestion: 0 });
   };
 
   toggleshowRightAnswerNow = () => {
@@ -50,26 +49,42 @@ class App extends Component {
     });
   };
 
-  nextQuestion = () => {
-    this.setState({
-      startingQuestion:
-        this.state.startingQuestion + 1 * this.state.questionPerPage
-    });
+  previesQuestion = () => {
+    const { startingQuestion, questionPerPage } = this.state;
+    this.setState(
+      { startingQuestion: startingQuestion - 1 * questionPerPage },
+      () => window.scrollTo(0, 0)
+    );
   };
 
-  previesQuestion = () => {
-    let { startingQuestion: start, questionPerPage: count } = this.state;
-    if (start - 1 * count >= 0)
-      this.setState({
-        startingQuestion: start - 1 * count
-      });
+  nextQuestion = () => {
+    const { startingQuestion, questionPerPage } = this.state;
+    this.setState(
+      { startingQuestion: startingQuestion + 1 * questionPerPage },
+      () => window.scrollTo(0, 0)
+    );
   };
 
   removeQuestion = id => {
-    const newQuestionsList = this.state.questionsList.filter(x => x.id !== id);
-    this.setState({
-      questionsList: newQuestionsList
+    const questionsList = this.state.questionsList.filter(x => x.id !== id);
+    this.setState({ questionsList });
+  };
+
+  hideQuestion = id => {
+    const questionsList = this.state.questionsList.map(x => {
+      if (x.id === id) x.hide = true;
+      return x;
     });
+    this.setState({ questionsList });
+  };
+
+  showExplanation = id => {
+    console.log(id);
+    // const questionsList = this.state.questionsList.map(x => {
+    //   if (x.id === id) x.hide = true;
+    //   return x;
+    // });
+    // this.setState({ questionsList });
   };
 
   render() {
@@ -103,6 +118,7 @@ class App extends Component {
                     nextQuestion={this.nextQuestion}
                     previesQuestion={this.previesQuestion}
                     removeQuestion={this.removeQuestion}
+                    hideQuestion={this.hideQuestion}
                     userClickedAnswer={this.userClickedAnswer}
                   />
                 </Col>

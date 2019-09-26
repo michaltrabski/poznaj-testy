@@ -8,7 +8,8 @@ const Questions = ({
   questionPerPage,
   nextQuestion,
   previesQuestion,
-  removeQuestion
+  removeQuestion,
+  hideQuestion
 }) => {
   const sliceTo = startingQuestion + questionPerPage;
 
@@ -22,6 +23,7 @@ const Questions = ({
             question={question}
             questionPerPage={questionPerPage}
             removeQuestion={removeQuestion}
+            hideQuestion={hideQuestion}
           />
         );
       })}
