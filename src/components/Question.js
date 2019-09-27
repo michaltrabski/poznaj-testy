@@ -30,7 +30,10 @@ class Question extends Component {
         </Col>
       </Row>
     ) : (
-      <Row className="border rounded mb-5 py-3 bg-white">
+      <Row
+        className="shadow rounded mb-5 py-3 bg-white"
+        style={{ border: "1px solid #ced4da" }}
+      >
         <Col>
           <Row>
             <Col>
