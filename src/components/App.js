@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import { questionsList } from "../assets/kat_b_pl";
 import Questions from "./Questions";
 import styled from "styled-components";
@@ -17,6 +17,8 @@ const MaxWidth = styled.div`
   margin: auto;
 `;
 
+export const AppContext = createContext();
+
 class App extends Component {
   state = {
     questionsList: [...questionsList],
@@ -33,10 +35,11 @@ class App extends Component {
       "pt",
       "t"
     ],
+    accesByAppContext: "tak",
     showRightAnswerNow: false,
     currentCategory: "b",
     startingQuestion: 0,
-    questionPerPage: 1,
+    questionPerPage: 2,
     isUserLoggedIn: true
   };
 
@@ -90,43 +93,45 @@ class App extends Component {
 
     return (
       <BetterContextProvider>
-        <MichalContext.Provider
-          value={{
-            ...config,
-            showRightAnswerNow: this.state.showRightAnswerNow,
-            userCanSelectCategory: this.state.userCanSelectCategory,
-            currentCategory: this.state.currentCategory,
-            toggleshowRightAnswerNow: this.toggleshowRightAnswerNow,
-            questionPerPage: this.state.questionPerPage,
-            changeQuestionPerPage: this.changeQuestionPerPage
-          }}
-        >
-          <Background>
-            <MaxWidth>
-              <Container fluid className="py-5">
-                <Row>
-                  <Col xs={12} md={10}>
-                    <Questions
-                      questionsList={questionsList}
-                      questionPerPage={questionPerPage}
-                      startingQuestion={startingQuestion}
-                      nextQuestion={this.nextQuestion}
-                      previesQuestion={this.previesQuestion}
-                      removeQuestion={this.removeQuestion}
-                      hideQuestion={this.hideQuestion}
-                      userClickedAnswer={this.userClickedAnswer}
-                    />
-                  </Col>
-                  <Col xs={12} md={2}>
-                    <p>Kategoria: {currentCategory.toUpperCase()}</p>
-                    <p>Ilość pytań w bazie: {questionsList.length}</p>
-                    <Sidebar />
-                  </Col>
-                </Row>
-              </Container>
-            </MaxWidth>
-          </Background>
-        </MichalContext.Provider>
+        <AppContext.Provider value={{ ...this.state }}>
+          <MichalContext.Provider
+            value={{
+              ...config,
+              showRightAnswerNow: this.state.showRightAnswerNow,
+              userCanSelectCategory: this.state.userCanSelectCategory,
+              currentCategory: this.state.currentCategory,
+              toggleshowRightAnswerNow: this.toggleshowRightAnswerNow,
+              questionPerPage: this.state.questionPerPage,
+              changeQuestionPerPage: this.changeQuestionPerPage
+            }}
+          >
+            <Background>
+              <MaxWidth>
+                <Container fluid className="py-5">
+                  <Row>
+                    <Col xs={12} md={10}>
+                      <Questions
+                        questionsList={questionsList}
+                        questionPerPage={questionPerPage}
+                        startingQuestion={startingQuestion}
+                        nextQuestion={this.nextQuestion}
+                        previesQuestion={this.previesQuestion}
+                        removeQuestion={this.removeQuestion}
+                        hideQuestion={this.hideQuestion}
+                        userClickedAnswer={this.userClickedAnswer}
+                      />
+                    </Col>
+                    <Col xs={12} md={2}>
+                      <p>Kategoria: {currentCategory.toUpperCase()}</p>
+                      <p>Ilość pytań w bazie: {questionsList.length}</p>
+                      <Sidebar />
+                    </Col>
+                  </Row>
+                </Container>
+              </MaxWidth>
+            </Background>
+          </MichalContext.Provider>
+        </AppContext.Provider>
       </BetterContextProvider>
     );
   }
