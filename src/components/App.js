@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import { Container, Row, Col } from "react-bootstrap/";
 import MichalContext from "../context/MichalContext";
 import config from "../config/Config";
+import BetterContextProvider from "../context/BetterContext";
 
 const Background = styled.div`
   background-color: ${props => props.theme.light};
@@ -88,43 +89,45 @@ class App extends Component {
     } = this.state;
 
     return (
-      <MichalContext.Provider
-        value={{
-          ...config,
-          showRightAnswerNow: this.state.showRightAnswerNow,
-          userCanSelectCategory: this.state.userCanSelectCategory,
-          currentCategory: this.state.currentCategory,
-          toggleshowRightAnswerNow: this.toggleshowRightAnswerNow,
-          questionPerPage: this.state.questionPerPage,
-          changeQuestionPerPage: this.changeQuestionPerPage
-        }}
-      >
-        <Background>
-          <MaxWidth>
-            <Container fluid className="py-5">
-              <Row>
-                <Col xs={12} md={10}>
-                  <Questions
-                    questionsList={questionsList}
-                    questionPerPage={questionPerPage}
-                    startingQuestion={startingQuestion}
-                    nextQuestion={this.nextQuestion}
-                    previesQuestion={this.previesQuestion}
-                    removeQuestion={this.removeQuestion}
-                    hideQuestion={this.hideQuestion}
-                    userClickedAnswer={this.userClickedAnswer}
-                  />
-                </Col>
-                <Col xs={12} md={2}>
-                  <p>Kategoria: {currentCategory.toUpperCase()}</p>
-                  <p>Ilość pytań w bazie: {questionsList.length}</p>
-                  <Sidebar />
-                </Col>
-              </Row>
-            </Container>
-          </MaxWidth>
-        </Background>
-      </MichalContext.Provider>
+      <BetterContextProvider>
+        <MichalContext.Provider
+          value={{
+            ...config,
+            showRightAnswerNow: this.state.showRightAnswerNow,
+            userCanSelectCategory: this.state.userCanSelectCategory,
+            currentCategory: this.state.currentCategory,
+            toggleshowRightAnswerNow: this.toggleshowRightAnswerNow,
+            questionPerPage: this.state.questionPerPage,
+            changeQuestionPerPage: this.changeQuestionPerPage
+          }}
+        >
+          <Background>
+            <MaxWidth>
+              <Container fluid className="py-5">
+                <Row>
+                  <Col xs={12} md={10}>
+                    <Questions
+                      questionsList={questionsList}
+                      questionPerPage={questionPerPage}
+                      startingQuestion={startingQuestion}
+                      nextQuestion={this.nextQuestion}
+                      previesQuestion={this.previesQuestion}
+                      removeQuestion={this.removeQuestion}
+                      hideQuestion={this.hideQuestion}
+                      userClickedAnswer={this.userClickedAnswer}
+                    />
+                  </Col>
+                  <Col xs={12} md={2}>
+                    <p>Kategoria: {currentCategory.toUpperCase()}</p>
+                    <p>Ilość pytań w bazie: {questionsList.length}</p>
+                    <Sidebar />
+                  </Col>
+                </Row>
+              </Container>
+            </MaxWidth>
+          </Background>
+        </MichalContext.Provider>
+      </BetterContextProvider>
     );
   }
 }
